@@ -17,6 +17,16 @@
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
+    "configuration": {
+      "title": "Copy Code With Line",
+      "properties": {
+        "copyCodeWithLine.lineNumberSeparator": {
+          "type": "string",
+          "default": ". ",
+          "description": "Separator inserted between the line number and the code (default: \". \"). Include any spaces you want, e.g. \": \" or \" | \"."
+        }
+      }
+    },
     "commands": [
       {
         "command": "extension.copyWithActualNumberIndent1",

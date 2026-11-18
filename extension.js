@@ -22,6 +22,10 @@ function copyCodeWithLineNumbers(startFromOne = false, isRichText = false, inden
   const baseIndentMatch = firstLineText.match(/^(\s*)/);
   const baseIndent = baseIndentMatch ? baseIndentMatch[1].length : 0;
 
+  const separator = vscode.workspace
+    .getConfiguration("copyCodeWithLine")
+    .get("lineNumberSeparator", ". ");
+
   let copiedText = "";
   let htmlText = `<pre style="font-family: monospace;">`;
 
@@ -41,8 +45,8 @@ function copyCodeWithLineNumbers(startFromOne = false, isRichText = false, inden
     }
 
     const lineNumber = startFromOne ? i - startLine + 1 : i + 1;
-    copiedText += `${lineNumber}. ${lineText}\n`;
-    htmlText += `<span>${lineNumber}. ${lineText}</span><br>`;
+    copiedText += `${lineNumber}${separator}${lineText}\n`;
+    htmlText += `<span>${lineNumber}${separator}${lineText}</span><br>`;
   }
 
   htmlText += "</pre>";
